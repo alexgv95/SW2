@@ -1,0 +1,11 @@
+<!ELEMENT contenedorBibliotecas (listaBibliotecas*)>
+<!ELEMENT listaBibliotecas (listaLibros*)>
+<!ATTLIST listaBibliotecas	id CDATA #REQUIRED
+							facultad CDATA #REQUIRED
+							ciudad CDATA #REQUIRED>
+<!ELEMENT listaLibros (#PCDATA)>
+<!ATTLIST listaLibros	isbn CDATA #REQUIRED
+						autor CDATA #REQUIRED
+						titulo CDATA #REQUIRED
+						numPag CDATA #REQUIRED
+						disponibilidad CDATA #REQUIRED>

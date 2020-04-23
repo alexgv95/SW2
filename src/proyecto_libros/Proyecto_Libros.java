@@ -29,10 +29,11 @@ public class Proyecto_Libros {
             System.out.println("1. Crear biblioteca");
             System.out.println("2. Añadir libro a una biblioteca");
             System.out.println("3. Listar bibliotecas existentes");
-            System.out.println("4. Exportar bibliotaca a archivo XML");
-            System.out.println("5. Importar bibliotaca desde archivo XML");
+            System.out.println("4. Exportar biblioteca a archivo XML");
+            System.out.println("5. Importar biblioteca desde archivo XML");
             System.out.println("6. Exportar un libro de la biblioteca a XML");
             System.out.println("7. Importar un libro de XML a biblioteca");
+            System.out.println("8. Validar un archivo XML con la DTD");
 
             System.out.println("\n\tIntroduzca la opción: ");
 
@@ -64,6 +65,10 @@ public class Proyecto_Libros {
                     break;
                 case 7:
                     GestionBiblioteca.unmarshallingLibro();
+                    break;
+                case 8:
+                    GestionBiblioteca.validarDTD();
+                    break;
                 default:
                     System.out.println("Opcion errónea");
                     break;

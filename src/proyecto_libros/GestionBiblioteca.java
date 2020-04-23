@@ -19,6 +19,11 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
 
 /**
  *
@@ -127,7 +132,7 @@ public class GestionBiblioteca {
             marshallObj.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             //setting the values in POJO class
             //calling the marshall method
-            OutputStream os = new FileOutputStream("bibliotecas.xml");
+            OutputStream os = new FileOutputStream("xml/bibliotecas.xml");
             //marshallObj.marshal(bib1, System.out);
             marshallObj.marshal(contenedor, os);
             System.out.println("Biblioteca exportada con exito\n\n");
@@ -143,7 +148,7 @@ public class GestionBiblioteca {
         try {
             ContenedorBibliotecas contenedor = new ContenedorBibliotecas();
             //getting the xml file to read
-            File file = new File("bibliotecas.xml");
+            File file = new File("xml/bibliotecas.xml");
             //creating the JAXB context
             JAXBContext jContext = JAXBContext.newInstance(ContenedorBibliotecas.class);
             //creating the unmarshall object
@@ -173,7 +178,11 @@ public class GestionBiblioteca {
 
             //ContenedorBibliotecas contenedor = new ContenedorBibliotecas();
             //getting the xml file to read
-            File file = new File("libroParticular.xml");
+            System.out.println("¿Qúe título quiere importar?");
+            BufferedReader consola = new BufferedReader(new InputStreamReader(System.in));
+            String titulo = consola.readLine();
+            String fichero = "xml/" + titulo + ".xml";
+            File file = new File(fichero);
             //creating the JAXB context
             JAXBContext jContext = JAXBContext.newInstance(Libro.class);
             //creating the unmarshall object
@@ -187,6 +196,8 @@ public class GestionBiblioteca {
             System.out.println("Libro importado con exito");
         } catch (JAXBException e) {
             System.out.println(e);
+        } catch (IOException ex) {
+            Logger.getLogger(GestionBiblioteca.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -206,9 +217,11 @@ public class GestionBiblioteca {
             marshallObj.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             //setting the values in POJO class
             //calling the marshall method
-            OutputStream os = new FileOutputStream("libroParticular.xml");
+            //OutputStream os = new FileOutputStream("libroParticular.xml");
+            File libroFile = new File("xml/" + lib.getTitulo() + ".xml");
             //marshallObj.marshal(bib1, System.out);
-            marshallObj.marshal(lib, os);
+            //marshallObj.marshal(lib, os);
+            marshallObj.marshal(lib, libroFile);
             System.out.println("Libro: " + lib.getTitulo() + " exportado con exito\n\n");
         } catch (JAXBException e) {
             System.out.println(e);
@@ -230,8 +243,8 @@ public class GestionBiblioteca {
     }
 
     private static void anadirLibro(Libro lib) {
-        
-        try{
+
+        try {
             System.out.println(listaBibliotecas);
             BufferedReader consola = new BufferedReader(new InputStreamReader(System.in));
             System.out.println("Introduzca ID de la biblioteca: ");
@@ -240,7 +253,7 @@ public class GestionBiblioteca {
             ArrayList<Libro> listaLibros = bib.getListaLibros();
             listaLibros.add(lib);
             bib.setListaLibros(listaLibros);
-        }catch(IOException ex){
+        } catch (IOException ex) {
             System.out.println(ex);
         }
     }
@@ -259,4 +272,39 @@ public class GestionBiblioteca {
             }
         }
     }
+
+    public static void validarDTD() {
+        String respuesta;
+        File xmlFile = null;
+        try {
+            System.out.println("Introduzca el nombre del fichero a validar");
+            BufferedReader consola = new BufferedReader(new InputStreamReader(System.in));
+            String fichero = consola.readLine();
+            xmlFile = new File("xml/" + fichero + ".xml");
+
+            DocumentBuilderFactory dBF = DocumentBuilderFactory.newInstance();
+            dBF.setValidating(true);
+            DocumentBuilder builder = dBF.newDocumentBuilder();
+            //In this case we are creating a different ErrorHandler, if not we do like the well-formed Checker+
+            CustomErrorHandler customErrorHandler = new CustomErrorHandler();
+            builder.setErrorHandler(customErrorHandler);
+            Document doc = builder.parse(xmlFile);
+            if (customErrorHandler.isValid()) {
+                respuesta = (xmlFile + " es válido");
+            } else {
+                respuesta = (xmlFile + " no es válido");
+            }
+        } catch (IOException ex) {
+            //Logger.getLogger(GestionBiblioteca.class.getName()).log(Level.SEVERE, null, ex);
+            respuesta = (xmlFile + " no ha podido ser accedido");
+        } catch (ParserConfigurationException ex) {
+            //Logger.getLogger(GestionBiblioteca.class.getName()).log(Level.SEVERE, null, ex);
+            respuesta = (xmlFile + " error en el parseado");
+        } catch (SAXException ex) {
+            //Logger.getLogger(GestionBiblioteca.class.getName()).log(Level.SEVERE, null, ex);
+            respuesta = (xmlFile + " no esta bien formado");
+        }
+        System.out.println(respuesta);
+    }
+
 }

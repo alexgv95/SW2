@@ -3,6 +3,7 @@
     <listaBibliotecas id="1" facultad="EPS" ciudad="Madrid">
         <listaLibros isbn="123456789" autor="Javier Sancerni" titulo="El arte del suspenso" numPag="421" disponibilidad="DISPONIBLE"/>
         <listaLibros isbn="123555467" autor="Alejandro Guti�rrez" titulo="F�sica Avanzada" numPag="1201" disponibilidad="BAJO_PEDIDO"/>
+        <listaLibros isbn="000111777" autor="Pedro Sanchez" titulo="TFG falso" numPag="145" disponibilidad="DISPONIBLE"/>
     </listaBibliotecas>
     <listaBibliotecas id="2" facultad="Materiales" ciudad="Vigo">
         <listaLibros isbn="12345778" autor="" titulo="Cartas an�nimas" numPag="5" disponibilidad="DESCATALOGADO"/>
@@ -11,4 +12,5 @@
     <listaBibliotecas id="3" facultad="Filosofía" ciudad="Barcelona">
         <listaLibros isbn="147852369" autor="Leo Messi" titulo="Peque�ito y cojo" numPag="102" disponibilidad="DESCATALOGADO"/>
     </listaBibliotecas>
+    <listaBibliotecas id="4" facultad="Letras puras" ciudad="Salamanca"/>
 </ContenedorBibliotecas>

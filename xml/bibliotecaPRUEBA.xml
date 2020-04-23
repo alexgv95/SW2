@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!DOCTYPE Galaxia SYSTEM "BibliotecaDTD.dtd">
+<ContenedorBibliotecas>
+	<listaBibliotecas id="3" facultad="Filosofía" ciudad="Barcelona">
+        <listaLibros isbn="147852369" autor="Leo Messi" titulo="Pequenito y cojo" numPag="102" disponibilidad="DESCATALOGADO"/>
+    </listaBibliotecas>
+</ContenedorBibliotecas>
