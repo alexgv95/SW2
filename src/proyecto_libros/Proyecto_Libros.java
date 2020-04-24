@@ -34,6 +34,9 @@ public class Proyecto_Libros {
             System.out.println("6. Exportar un libro de la biblioteca a XML");
             System.out.println("7. Importar un libro de XML a biblioteca");
             System.out.println("8. Validar un archivo XML con la DTD");
+            System.out.println("9. Validar contra la XSD creada un archivo XML");
+
+            System.out.println("X. SALIR");
 
             System.out.println("\n\tIntroduzca la opción: ");
 
@@ -68,6 +71,9 @@ public class Proyecto_Libros {
                     break;
                 case 8:
                     GestionBiblioteca.validarDTD();
+                    break;
+                case 9:
+                    GestionBiblioteca.validarXSD();
                     break;
                 default:
                     System.out.println("Opcion errónea");

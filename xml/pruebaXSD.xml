@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<ContenedorBibliotecas xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="biblioteca.xsd">
+    <listaBibliotecas id="1" facultad="EPS" ciudad="Madrid">
+        <listaLibros isbn="123456789" autor="Javier Sancerni" titulo="El arte del suspenso" numPag="421" disponibilidad="DISPONIBLE"/>
+        <listaLibros isbn="123555467" autor="Alejandro Guti�rrez" titulo="F�sica Avanzada" numPag="1201" disponibilidad="BAJO_PEDIDO"/>
+        <listaLibros isbn="000111777" autor="Pedro Sanchez" titulo="TFG falso" numPag="145" disponibilidad="DISPONIBLE"/>
+    </listaBibliotecas>
+</ContenedorBibliotecas>

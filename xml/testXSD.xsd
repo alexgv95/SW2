@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <xs:import namespace="http://www.w3.org/2001/XMLSchema-instance" schemaLocation="xsi.xsd"/>
+  <xs:element name="ContenedorBibliotecas">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="listaBibliotecas"/>
+      </xs:sequence>
+      <xs:attribute ref="xsi:noNamespaceSchemaLocation" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="listaBibliotecas">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="listaLibros"/>
+      </xs:sequence>
+      <xs:attribute name="ciudad" use="required" type="xs:NCName"/>
+      <xs:attribute name="facultad" use="required" type="xs:NCName"/>
+      <xs:attribute name="id" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="listaLibros">
+    <xs:complexType>
+      <xs:attribute name="autor" use="required"/>
+      <xs:attribute name="disponibilidad" use="required" type="xs:NCName"/>
+      <xs:attribute name="isbn" use="required" type="xs:integer"/>
+      <xs:attribute name="numPag" use="required" type="xs:integer"/>
+      <xs:attribute name="titulo" use="required"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>	

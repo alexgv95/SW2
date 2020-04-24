@@ -1,5 +1,5 @@
-<!ELEMENT contenedorBibliotecas (listaBibliotecas*)>
-<!ELEMENT listaBibliotecas (listaLibros*)>
+<!ELEMENT ContenedorBibliotecas (listaBibliotecas)*>
+<!ELEMENT listaBibliotecas (listaLibros)*>
 <!ATTLIST listaBibliotecas	id CDATA #REQUIRED
 							facultad CDATA #REQUIRED
 							ciudad CDATA #REQUIRED>

@@ -15,6 +15,7 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.xml.XMLConstants;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -22,6 +23,10 @@ import javax.xml.bind.Unmarshaller;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.stream.StreamSource;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
+import javax.xml.validation.Validator;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
@@ -278,6 +283,8 @@ public class GestionBiblioteca {
         File xmlFile = null;
         try {
             System.out.println("Introduzca el nombre del fichero a validar");
+            System.out.println("Consejo: Hay un fichero ya creado llamdo prueba1");
+            //SE VALIDA CONTRA bibliotecaDTD.dtd    
             BufferedReader consola = new BufferedReader(new InputStreamReader(System.in));
             String fichero = consola.readLine();
             xmlFile = new File("xml/" + fichero + ".xml");
@@ -285,7 +292,6 @@ public class GestionBiblioteca {
             DocumentBuilderFactory dBF = DocumentBuilderFactory.newInstance();
             dBF.setValidating(true);
             DocumentBuilder builder = dBF.newDocumentBuilder();
-            //In this case we are creating a different ErrorHandler, if not we do like the well-formed Checker+
             CustomErrorHandler customErrorHandler = new CustomErrorHandler();
             builder.setErrorHandler(customErrorHandler);
             Document doc = builder.parse(xmlFile);
@@ -303,6 +309,35 @@ public class GestionBiblioteca {
         } catch (SAXException ex) {
             //Logger.getLogger(GestionBiblioteca.class.getName()).log(Level.SEVERE, null, ex);
             respuesta = (xmlFile + " no esta bien formado");
+        }
+        System.out.println(respuesta);
+    }
+
+    static void validarXSD() {
+        File ficheroXml = null;
+        File ficheroXsd = null;
+        String respuesta = null;
+        try {
+            System.out.println("Introduzca el nombre del fichero a validar");
+            System.out.println("Consejo: Hay un fichero ya creado llamdo pruebaXSD");
+            BufferedReader consola = new BufferedReader(new InputStreamReader(System.in));
+            String fichero = consola.readLine();
+            System.out.println("Introduzca el nombre del fichero XSD contra el que comprobarlo");
+            System.out.println("Consejo: Hay un fichero ya creado llamdo biblioteca");
+            String fichero2 = consola.readLine();
+            ficheroXml = new File("xml/" + fichero + ".xml");
+            ficheroXsd = new File("xml/" + fichero2 + ".xsd");
+            SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+            Schema schema = schemaFactory.newSchema(ficheroXsd);
+            Validator validator = schema.newValidator();
+            validator.validate(new StreamSource(ficheroXml));
+            respuesta = (ficheroXml + " es válido frente a " + ficheroXsd);
+        } catch (IOException ex) {
+            respuesta = (ficheroXml + "NO ha podido ser encontrado");
+            //Logger.getLogger(GestionBiblioteca.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SAXException ex) {
+            respuesta = (ficheroXml + " NO es válido frente a " + ficheroXsd);
+            //Logger.getLogger(GestionBiblioteca.class.getName()).log(Level.SEVERE, null, ex);
         }
         System.out.println(respuesta);
     }
