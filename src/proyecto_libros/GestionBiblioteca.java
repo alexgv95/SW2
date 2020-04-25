@@ -283,7 +283,7 @@ public class GestionBiblioteca {
         File xmlFile = null;
         try {
             System.out.println("Introduzca el nombre del fichero a validar");
-            System.out.println("Consejo: Hay un fichero ya creado llamdo prueba1");
+            System.out.println("Consejo: Hay un fichero ya creado llamdo pruebaDTD");
             //SE VALIDA CONTRA bibliotecaDTD.dtd    
             BufferedReader consola = new BufferedReader(new InputStreamReader(System.in));
             String fichero = consola.readLine();
@@ -340,6 +340,82 @@ public class GestionBiblioteca {
             //Logger.getLogger(GestionBiblioteca.class.getName()).log(Level.SEVERE, null, ex);
         }
         System.out.println(respuesta);
+    }
+
+    static void sentenciaXPath() {
+        System.out.println("1.Listar biblitoecas por nombre de facultad");
+        System.out.println("2.Contar los libros en todas las biblitoecas");
+        System.out.println("3.Listar libros de la biblioteca de Madrid");
+        System.out.println("4.Listar los autores BAJO_PEDIDO (mas demandados)");
+        System.out.println("5.Escribe sentencia Xpath");
+        int opcion;
+        String fichero;
+        XPath xP = new XPath();
+        try {
+            BufferedReader consola = new BufferedReader(new InputStreamReader(System.in));
+            opcion = Integer.parseInt(consola.readLine());
+            switch (opcion) {
+                case 1:
+                    System.out.println("Introduzca fichero con las bibliotecas a mostrar");
+                    System.out.println("Consejo: Estan en el fichero bibliotecas");
+                    fichero = consola.readLine();
+                    System.out.println(xP.mostrarBibliotecas(fichero));
+                    break;
+                case 2:
+                    System.out.println("Introduzca fichero con los libros a contar");
+                    System.out.println("Consejo: Estan en el fichero bibliotecas");
+                    fichero = consola.readLine();
+                    System.out.println(xP.contarLibros(fichero));
+                    break;
+                case 3:
+                    System.out.println("Introduzca fichero con los libros a contar");
+                    System.out.println("Consejo: Estan en el fichero bibliotecas");
+                    fichero = consola.readLine();
+                    System.out.println(xP.listarLibros(fichero));
+                    break;
+                case 4:
+                    System.out.println("Introduzca fichero con los libros a contar");
+                    System.out.println("Consejo: Estan en el fichero bibliotecas");
+                    fichero = consola.readLine();
+                    System.out.println(xP.listarLibrosBajoPedido(fichero));
+                    break;
+                case 5:
+                    System.out.println("Introduzca fichero con los libros a contar");
+                    System.out.println("Consejo: Estan en el fichero bibliotecas");
+                    fichero = consola.readLine();
+                    System.out.println("Introduzca la sentencia XPath");
+                    String sentencia = consola.readLine();
+                    System.out.println(xP.sentenciaUsuario(fichero, sentencia));
+                    break;
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(GestionBiblioteca.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    static void sentenciaXQuery() {
+        System.out.println("1. Mostrar bibliotecas por orden de facultad");
+        System.out.println("2. Mostrar libros cortitos (menores a 450 páginas)");
+        System.out.println("3. Ejemplo sentencia predefinida XPath sobre un fichero XML");
+        //XQueryOwn xQ = new XQueryOwn();
+        int opcion;
+        try {
+            BufferedReader consola = new BufferedReader(new InputStreamReader(System.in));
+            opcion = Integer.parseInt(consola.readLine());
+            switch (opcion) {
+                case 1:
+                    XQueryOwn.bibliotecasFacultad();
+                    break;
+                case 2:
+                    XQueryOwn.librosCortos();
+                    break;
+                case 3:
+                    XQueryOwn.predefinidaQuery();
+                    break;
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(GestionBiblioteca.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

@@ -23,7 +23,7 @@ public class Proyecto_Libros {
         int opcion = 0;
         Biblioteca bib;
         GestionBiblioteca.unmarshallingBiblioteca();
-        System.out.println("[Cargando bibliotecas de la base de datos ...]\n\n");
+        System.out.println("\n\n\n\n\n[Cargando bibliotecas de la base de datos ...]\n\n");
         do {
             System.out.println("--MENÚ PRINCIPAL--");
             System.out.println("1. Crear biblioteca");
@@ -35,9 +35,12 @@ public class Proyecto_Libros {
             System.out.println("7. Importar un libro de XML a biblioteca");
             System.out.println("8. Validar un archivo XML con la DTD");
             System.out.println("9. Validar contra la XSD creada un archivo XML");
-
-            System.out.println("X. SALIR");
-
+            System.out.println("10. Ejecutar sentencia XPath");
+            System.out.println("11. Ejecutar sentencia XQuery");
+    
+            System.out.println("0. SALIR");
+            System.out.println("------------------------");
+            
             System.out.println("\n\tIntroduzca la opción: ");
 
             try {
@@ -75,12 +78,20 @@ public class Proyecto_Libros {
                 case 9:
                     GestionBiblioteca.validarXSD();
                     break;
+                case 10:
+                    GestionBiblioteca.sentenciaXPath();
+                    break;
+                case 11:
+                    GestionBiblioteca.sentenciaXQuery();
+                    break;
+                case 0:
+                    System.out.println("Saliendo");
+                    System.exit(0);
                 default:
                     System.out.println("Opcion errónea");
                     break;
             }
         } while (opcion > 0);
-
     }
 
 }

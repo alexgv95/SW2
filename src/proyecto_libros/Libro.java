@@ -9,7 +9,6 @@ import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -76,7 +75,7 @@ public class Libro implements Serializable {
 
     @Override
     public String toString() {
-        return "Libro{" + "isbn=" + isbn + ", autor=" + autor + ", titulo=" + titulo + ", numPag=" + numPag + ", disponibilidad=" + disponibilidad + '}';
+        return "\n\t\tLibro{" + "\n\t\tisbn=" + isbn + "\n\t\tautor=" + autor + "\n\t\ttitulo=" + titulo + "\n\t\tnumPag=" + numPag + "\n\t\tdisponibilidad=" + disponibilidad + '}';
     }
 
 }

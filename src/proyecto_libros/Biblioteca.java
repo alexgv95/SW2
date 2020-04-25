@@ -67,7 +67,7 @@ public class Biblioteca implements Serializable {
 
     @Override
     public String toString() {
-        return "Biblioteca{" + "id=" + id + ", facultad=" + facultad + ", ciudad=" + ciudad + ", listaLibros=" + listaLibros + '}';
+        return "\nBiblioteca{" + "\n\tid=" + id + "\n\tfacultad=" + facultad + "\n\tciudad=" + ciudad + "\n\tlistaLibros=" + listaLibros + '}';
     }
 
 }
